@@ -2,8 +2,8 @@ import asyncio
 import random
 from typing import List
 from pydantic import BaseModel, Field
-from src.nodes import AsyncNode, START, END
-from src.flows import AsyncStateFlow
+from state_flow.nodes import AsyncNode, START, END
+from state_flow.flows import AsyncStateFlow
 
 class AsyncFlowState(BaseModel):
     history: List[str] = Field(default_factory=list)

@@ -1,8 +1,8 @@
 import random
 from typing import List
 from pydantic import BaseModel, Field
-from src.nodes import Node, START, END
-from src.flows import StateFlow
+from state_flow.nodes import Node, START, END
+from state_flow.flows import StateFlow
 
 
 

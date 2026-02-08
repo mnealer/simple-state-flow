@@ -2,7 +2,7 @@ import asyncio
 from abc import ABC, abstractmethod
 from typing import Any, Callable, Dict, List, Optional, Type, Union, TypeVar, Generic, Coroutine
 from pydantic import BaseModel
-from src.nodes import START, END, Node, AsyncNode
+from state_flow.nodes import START, END, Node, AsyncNode
 
 T = TypeVar("T", bound=BaseModel)
 
