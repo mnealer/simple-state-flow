@@ -5,6 +5,8 @@ description = "A graph-based state flow library using Pydantic"
 authors = [
     { name = "Marc Nealer" }
 ]
+license = "MIT"
+urls = { repository = "https://gitlab.com/mystuff6091446/state-flow.git" }
 requires-python = ">=3.10"
 dependencies = [
     "pydantic>=2.12.5",

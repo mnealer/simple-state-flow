@@ -3,5 +3,9 @@ Name: state-flow
 Version: 0.1.0
 Summary: A graph-based state flow library using Pydantic
 Author: Marc Nealer
+License-Expression: MIT
+Project-URL: repository, https://gitlab.com/mystuff6091446/state-flow.git
 Requires-Python: >=3.10
+License-File: LICENSE
 Requires-Dist: pydantic>=2.12.5
+Dynamic: license-file
