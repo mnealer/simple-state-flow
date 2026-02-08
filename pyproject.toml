@@ -1,5 +1,5 @@
 [project]
-name = "state-flow"
+name = "simple-state-flow"
 version = "0.1.0"
 description = "A graph-based state flow library using Pydantic"
 authors = [
