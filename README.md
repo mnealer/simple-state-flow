@@ -1,4 +1,4 @@
-# Python State Flow
+# Simple State Flow
 
 This is a lightweight workflow orchestrator. You define a State object that is passed from task
 to task, where you save any changes you make. At the end of the workflow, the State object is passed back to
@@ -23,13 +23,13 @@ your complex workflows into Nodes or tasks so they are straightforward to mainta
 This project uses `uv` for dependency management.
 
 ```bash
-uv add state-flow
+uv add simple-state-flow
 ```
 
 Or with pip:
 
 ```bash
-pip install state-flow
+pip install simple-state-flow
 ```
 
 ### Setup
@@ -107,7 +107,7 @@ state.log("Workflow started")
 
 ### 2. Nodes
 
-Nodes represent a single step in your workflow. Unlike some other libraries where nodes can be simple functions, in State Flow, a Node is a class.
+Nodes represent a single step in your workflow. Unlike some other libraries where nodes can be simple functions, in Simple State Flow, a Node is a class.
 
 ```python
 from state_flow import Node, START, END
@@ -121,7 +121,7 @@ class MyNode(Node):
 
 To create a node, you must inherit from `Node` (for synchronous workflows) or `AsyncNode` (for asynchronous workflows) and override the `exec` method.
 
-The `exec` method does not receive arguments. Instead, you access the current state via `self.state`. Inside this method, you can modify the state object directly.
+In Simple State Flow, the `exec` method does not receive arguments. Instead, you access the current state via `self.state`. Inside this method, you can modify the state object directly.
 
 After execution, the node returns the modified state object along with a `result` string. You don't need to return these manually; the base class handles it. However, you can set the `self.result` attribute within your `exec` method. This `result` string is crucial for **conditional edges**, as it determines which node will be executed next in the workflow.
 
@@ -142,7 +142,7 @@ class MyNode(Node[MyState]):
 
 Flows define the structure and execution logic of your workflow graph. To create a flow, you inherit from `StateFlow` (for synchronous workflows) or `AsyncStateFlow` (for asynchronous workflows).
 
-The most critical part of defining a flow is overriding the `setup_graph` method (or `_setup_graph` for async flows). This is where you register your nodes and define the connections (edges) between them.
+In Simple State Flow, the most critical part of defining a flow is overriding the `setup_graph` method (or `_setup_graph` for async flows). This is where you register your nodes and define the connections (edges) between them.
 
 #### `add_node(name: str, node: Node)`
 Registers a node in the graph.
