@@ -1,0 +1,12 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:Initialize DataFrame;
+repeat
+    :Fetch Page;
+    :Update DataFrame;
+repeat while (More Pages?) is (Yes)
+->No;
+stop
+@enduml

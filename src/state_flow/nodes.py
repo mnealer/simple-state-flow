@@ -15,7 +15,7 @@ class Node(ABC, Generic[T]):
         self.result: str = "done"
 
     @abstractmethod
-    def exec(self, state: T) -> None:
+    def exec(self) -> None:
         """Abstract method that must be implemented by subclasses.
 
         Args:
@@ -62,7 +62,7 @@ class Node(ABC, Generic[T]):
             A tuple of (updated state, next status).
         """
         self._pre_run(state)
-        self.exec(self.state)
+        self.exec()
         return self.state, self.result
 
 class AsyncNode(ABC, Generic[T]):
@@ -73,7 +73,7 @@ class AsyncNode(ABC, Generic[T]):
         self.result: str = "done"
 
     @abstractmethod
-    async def exec(self, state: T) -> None:
+    async def exec(self) -> None:
         """Abstract method that must be implemented by subclasses.
 
         Args:
@@ -108,5 +108,5 @@ class AsyncNode(ABC, Generic[T]):
             A tuple of (updated state, next status).
         """
         self._pre_run(state)
-        await self.exec(self.state)
+        await self.exec()
         return self.state, self.result

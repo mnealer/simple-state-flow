@@ -51,6 +51,44 @@ class StateFlow(ABC, Generic[T]):
         """
         self.conditional_edges[start_node] = mapping
 
+    def to_mermaid(self) -> str:
+        """Generate a Mermaid diagram representation of the flow.
+
+        Returns:
+            A string containing the Mermaid diagram.
+        """
+        lines = ["graph TD"]
+        
+        # Add START node
+        lines.append(f"    {START}((START))")
+        
+        # Add normal nodes
+        for node_name in self.nodes:
+            lines.append(f"    {node_name}[{node_name}]")
+            
+        # Add END node
+        lines.append(f"    {END}((END))")
+
+        # Add edges
+        for start_node, end_node in self.edges.items():
+            lines.append(f"    {start_node} --> {end_node}")
+
+        # Add conditional edges
+        for start_node, mapping in self.conditional_edges.items():
+            for result, end_node in mapping.items():
+                lines.append(f"    {start_node} -- {result} --> {end_node}")
+
+        return "\n".join(lines)
+
+    def save_mermaid(self, filename: str) -> None:
+        """Save the Mermaid diagram to a file.
+
+        Args:
+            filename: The name of the file to save the Mermaid diagram to.
+        """
+        with open(filename, "w") as f:
+            f.write(self.to_mermaid())
+
     def run(self, state: T) -> T:
         """Run the flow starting from the START node.
 
@@ -139,6 +177,44 @@ class AsyncStateFlow(ABC, Generic[T]):
             mapping: A dictionary mapping node execution results to destination nodes.
         """
         self.conditional_edges[start_node] = mapping
+
+    def to_mermaid(self) -> str:
+        """Generate a Mermaid diagram representation of the flow.
+
+        Returns:
+            A string containing the Mermaid diagram.
+        """
+        lines = ["graph TD"]
+        
+        # Add START node
+        lines.append(f"    {START}((START))")
+        
+        # Add normal nodes
+        for node_name in self.nodes:
+            lines.append(f"    {node_name}[{node_name}]")
+            
+        # Add END node
+        lines.append(f"    {END}((END))")
+
+        # Add edges
+        for start_node, end_node in self.edges.items():
+            lines.append(f"    {start_node} --> {end_node}")
+
+        # Add conditional edges
+        for start_node, mapping in self.conditional_edges.items():
+            for result, end_node in mapping.items():
+                lines.append(f"    {start_node} -- {result} --> {end_node}")
+
+        return "\n".join(lines)
+
+    def save_mermaid(self, filename: str) -> None:
+        """Save the Mermaid diagram to a file.
+
+        Args:
+            filename: The name of the file to save the Mermaid diagram to.
+        """
+        with open(filename, "w") as f:
+            f.write(self.to_mermaid())
 
     async def run(self, state: T) -> T:
         """Run the flow starting from the START node.
