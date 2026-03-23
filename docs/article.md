@@ -63,7 +63,7 @@ A Node class:
 The `exec` method is where the work happens. You don't return the state; you modify `self.state` in place. You don't return the next node's name; you set `self.result` (which defaults to "done").
 
 ```python
-from src.nodes import Node
+from nodes import Node
 
 class ValidateUserNode(Node[WorkflowState]):
     def exec(self) -> None:
@@ -90,8 +90,8 @@ Key methods include:
 It's important to note that these graph-building methods (`add_node`, `add_edge`, etc.) are not restricted to the `setup_graph` method. They can be called on the Flow object even after it has been initialized. This allows for **dynamic workflow creation**, where you can programmatically construct or modify your graph based on runtime conditions or configuration files before execution.
 
 ```python
-from src.flows import StateFlow
-from src.nodes import START, END
+from flows import StateFlow
+from nodes import START, END
 
 class UserOnboardingFlow(StateFlow[WorkflowState]):
     def setup_graph(self) -> None:

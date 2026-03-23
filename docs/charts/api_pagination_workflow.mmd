@@ -1,0 +1,7 @@
+graph TD
+    START((Start)) --> Init[Initialize DataFrame]
+    Init --> Fetch[Fetch Page]
+    Fetch --> Update[Update DataFrame]
+    Update --> Check{More Pages?}
+    Check -- Yes --> Fetch
+    Check -- No --> END((End))

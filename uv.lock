@@ -200,8 +200,8 @@ wheels = [
 ]
 
 [[package]]
-name = "state-flow"
-version = "0.1.0"
+name = "simple-state-flow"
+version = "0.1.5"
 source = { editable = "." }
 dependencies = [
     { name = "pydantic" },
@@ -213,7 +213,7 @@ dev = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "pydantic", specifier = ">=2.12.5" }]
+requires-dist = [{ name = "pydantic", specifier = ">=2.11.0" }]
 
 [package.metadata.requires-dev]
 dev = [{ name = "build", specifier = ">=1.4.0" }]

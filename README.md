@@ -110,7 +110,7 @@ state.log("Workflow started")
 Nodes represent a single step in your workflow. Unlike some other libraries where nodes can be simple functions, in Simple State Flow, a Node is a class.
 
 ```python
-from state_flow import Node, START, END
+from simple_state_flow import Node, START, END
 
 class MyNode(Node):
     def exec(self, state: MyState):
