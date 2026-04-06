@@ -113,7 +113,7 @@ class StateFlow(ABC, Generic[T]):
             if current_node not in self.nodes:
                 raise ValueError(f"Node {current_node} not found in flow.")
             
-            state, result = self.nodes[current_node].run(state)
+            state, result = self.nodes[current_node]._run(state)
 
             # Check for conditional edges first
             if current_node in self.conditional_edges:
@@ -143,7 +143,7 @@ class AsyncStateFlow(ABC, Generic[T]):
         self._setup_graph()
 
     @abstractmethod
-    def _setup_graph(self) -> None:
+    def setup_graph(self) -> None:
         """Override this method to add nodes and edges to the flow."""
         pass
 
@@ -240,7 +240,7 @@ class AsyncStateFlow(ABC, Generic[T]):
             if current_node not in self.nodes:
                 raise ValueError(f"Node {current_node} not found in flow.")
             
-            state, result = await self.nodes[current_node].run(state)
+            state, result = await self.nodes[current_node]._run(state)
 
             # Check for conditional edges first
             if current_node in self.conditional_edges:

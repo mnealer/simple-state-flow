@@ -9,25 +9,25 @@ class AsyncFlowState(BaseModel):
     history: List[str] = Field(default_factory=list)
 
 class AsyncNodeA(AsyncNode):
-    async def exec(self, state: AsyncFlowState) -> None:
+    async def exec(self) -> None:
         await asyncio.sleep(0.01)
-        state.history.append("A")
+        self.state.history.append("A")
 
 class AsyncNodeB(AsyncNode):
-    async def exec(self, state: AsyncFlowState) -> None:
+    async def exec(self) -> None:
         await asyncio.sleep(0.01)
-        state.history.append("B")
+        self.state.history.append("B")
         self.result = random.choice(["to_c", "to_d"])
 
 class AsyncNodeC(AsyncNode):
-    async def exec(self, state: AsyncFlowState) -> None:
+    async def exec(self) -> None:
         await asyncio.sleep(0.01)
-        state.history.append("C")
+        self.state.history.append("C")
 
 class AsyncNodeD(AsyncNode):
-    async def exec(self, state: AsyncFlowState) -> None:
+    async def exec(self) -> None:
         await asyncio.sleep(0.01)
-        state.history.append("D")
+        self.state.history.append("D")
 
 class SimpleAsyncFlow(AsyncStateFlow[AsyncFlowState]):
     def _setup_graph(self) -> None:

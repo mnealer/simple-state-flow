@@ -16,13 +16,12 @@ class Node(ABC, Generic[T]):
 
     @abstractmethod
     def exec(self) -> None:
-        """Abstract method that must be implemented by subclasses.
+        """Execute the node's logic.
 
-        Args:
-            state: The current state object.
-
-        Returns:
-            A tuple of (updated state, next status).
+        This method MUST be overridden by subclasses to implement the node's specific behavior.
+        The current state is available as `self.state`.
+        To define the path for conditional edges, set `self.result` to the desired outcome string.
+        By default, `self.result` is set to "done".
         """
         pass
 
@@ -52,7 +51,7 @@ class Node(ABC, Generic[T]):
         if result is not None:
             self.result = result
 
-    def run(self, state: T) -> Tuple[T, str]:
+    def _run(self, state: T) -> Tuple[T, str]:
         """Internal method to execute the node.
 
         Args:
@@ -74,13 +73,12 @@ class AsyncNode(ABC, Generic[T]):
 
     @abstractmethod
     async def exec(self) -> None:
-        """Abstract method that must be implemented by subclasses.
+        """Execute the node's logic asynchronously.
 
-        Args:
-            state: The current state object.
-
-        Returns:
-            A tuple of (updated state, next status).
+        This method MUST be overridden by subclasses to implement the node's specific behavior.
+        The current state is available as `self.state`.
+        To define the path for conditional edges, set `self.result` to the desired outcome string.
+        By default, `self.result` is set to "done".
         """
         pass
 
@@ -98,7 +96,7 @@ class AsyncNode(ABC, Generic[T]):
         self.state = state
         self.result = "done"
 
-    async def run(self, state: T) -> Tuple[T, str]:
+    async def _run(self, state: T) -> Tuple[T, str]:
         """Internal method to execute the node.
 
         Args:

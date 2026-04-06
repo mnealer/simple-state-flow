@@ -10,21 +10,21 @@ class FlowState(BaseModel):
     history: List[str] = Field(default_factory=list)
 
 class NodeA(Node):
-    def exec(self, state: FlowState) -> None:
-        state.history.append("A")
+    def exec(self) -> None:
+        self.state.history.append("A")
 
 class NodeB(Node):
-    def exec(self, state: FlowState) -> None:
-        state.history.append("B")
+    def exec(self) -> None:
+        self.state.history.append("B")
         self.result = random.choice(["to_c", "to_d"])
 
 class NodeC(Node):
-    def exec(self, state: FlowState) -> None:
-        state.history.append("C")
+    def exec(self) -> None:
+        self.state.history.append("C")
 
 class NodeD(Node):
-    def exec(self, state: FlowState) -> None:
-        state.history.append("D")
+    def exec(self) -> None:
+        self.state.history.append("D")
 
 class RandomFlow(StateFlow[FlowState]):
     def setup_graph(self) -> None:
